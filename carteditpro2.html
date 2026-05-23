@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CART QUANTITY</title>
+    <style>
+        /* Modernized Layout and Typography */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333333;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            z-index: 1000;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .cart-status {
+            font-weight: 600;
+            background-color: #e6f2ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: #007bff;
+        }
+
+        /* Polished Product Cards */
+        .product-section {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .product-section h3 {
+            margin-top: 0;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Fixed <image> tag to standard <img> element */
+        img {
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        /* Elegant Interactive Buttons */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 4px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* Special styling context rules for reset and checkout buttons */
+        button.btn-reset {
+            background-color: #dc3545;
+        }
+
+        button.btn-reset:hover {
+            background-color: #bd2130;
+        }
+
+        .checkout-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        button.btn-checkout {
+            background-color: #28a745;
+            font-size: 18px;
+            padding: 14px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        button.btn-checkout:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Persistent Header component -->
+    <div class="navbar">
+        <div class="logo">@ShopDrive</div>
+        <div class="cart-status">Total Items: <span id="nav-total-counter">0</span></div>
+    </div>
+
+    <!-- Core Setup Script (loads first so interactive elements can look up values safely) -->
+    <script>
+        let cartqty1 = Number(localStorage.getItem('cartqty1')) || 0;
+        let cartqty2 = Number(localStorage.getItem('cartqty2')) || 0;
+
+        // Automatically displays changes up in our navigation frame layout container
+        function updateLiveCounters() {
+            document.getElementById('nav-total-counter').innerText = cartqty1 + cartqty2;
+        }
+
+        function savecart() {
+            localStorage.setItem('cartqty1', cartqty1);
+            localStorage.setItem('cartqty2', cartqty2);
+            updateLiveCounters();
+        }
+    </script>
+
+    <h1>UPDATE THE CART!!</h1>
+    <div class="intro-text">
+        <p>Click on the buttons below to add the quantity of items you want to add to cart.</p>
+        <p>Psttt~You can also reset the cart quantity back to zero using the 'Reset Cart' button below.</p>
+        <p>Your choices are safely preserved across updates and browser window reloads!</p>
+    </div>
+
+    <!-- BASKETBALL CONTAINER -->
+    <div class="product-section">
+        <h3>BASKETBALL</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="basketball" width="200" height="200">
+        
+        <br>
+        <button onclick="
+            console.log(`Cart Quantity = ${cartqty1}`);
+            alert(`Your updated Cart Quantity = ${cartqty1}`);
+        ">Show Quantity</button>
+
+        <button onclick=" 
+            cartqty1 = cartqty1 + 1;
+            savecart();
+            console.log(`Cart Quantity=${cartqty1}`);
+            alert(`you just added an item to your cart.\nUpdated Cart Quantity = ${cartqty1}`);
+        ">Add to Cart</button>
+
+        <button onclick="
+            cartqty1 = cartqty1 + 2;
+            savecart();
+            console.log(`Cart Quantity=${cartqty1}`);
+            alert(`you just added 2 items to your cart.\nUpdated Cart Quantity = ${cartqty1}`);
+        ">+2</button>
+
+        <button onclick="
+            cartqty1 += 3;
+            savecart();
+            console.log(`Cart Quantity=${cartqty1}`);
+            alert(`You just added 3 items to your cart.\nUpdated Cart Quantity = ${cartqty1}`);
+        ">+3</button>
+
+        <button class="btn-reset" onclick="
+            cartqty1 = 0;
+            savecart();
+            console.log(`Cart Quantity = ${cartqty1}`);
+            alert(`Cart Quantity reset to zero.\nUpdated Cart Quantity = ${cartqty1}`);
+        ">Reset Cart</button>
+    </div> 
+
+    <!-- PLUSHIE CONTAINER -->
+    <div class="product-section">
+        <h3>PLUSHIE</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTcH5u9wSiw7BKBGQ6peEY30KBlwC9mK8k7PbOL2kfowDTE7GvKGHbqho2OT1mcuPLUDXX5ZYaIKWcIbVeDHePr_SqUtqGy" alt="plushie" width="200" height="200">
+
+        <br>
+        <button onclick="
+            console.log(`Cart Quantity = ${cartqty2}`);
+            alert(`Your updated Cart Quantity = ${cartqty2}`);
+        ">Show Quantity</button>
+        
+        <button onclick=" 
+            cartqty2 += 1;
+            savecart();
+            console.log(`Cart Quantity=${cartqty2}`);
+            alert(`you just added an item to your cart.\nUpdated Cart Quantity = ${cartqty2}`);
+        ">Add to Cart</button>
+
+        <button onclick="
+            cartqty2 += 2;
+            savecart();
+            console.log(`Cart Quantity=${cartqty2}`);
+            alert(`you just added 2 items to your cart.\nUpdated Cart Quantity = ${cartqty2}`);
+        ">+2</button>
+
+        <button onclick="
+            cartqty2 += 3;
+            savecart();
+            console.log(`Cart Quantity=${cartqty2}`);
+            alert(`OMG you just added 3 items to your cart.\nUpdated Cart Quantity = ${cartqty2}`);
+        ">+3</button>
+
+        <button class="btn-reset" onclick="
+            cartqty2 = 0;
+            savecart();
+            console.log(`Cart Quantity = ${cartqty2}`);
+            alert(`Cart Quantity reset to zero.\nUpdated Cart Quantity = ${cartqty2}`);
+        ">Reset Cart</button>
+    </div>
+
+    <!-- LOWER REDIRECT CONTAINER -->
+    <div class="checkout-container">
+        <p>Click on the button below to proceed to checkout.</p>
+        <button class="btn-checkout" onclick="
+            let proceed = confirm('are you sure you want to checkout?');
+            if(proceed){
+                alert('proceeding to checkout');
+                window.location.href='http://127.0.0.1:5500/addsite.html';
+            } else {
+                alert('great! keep shopping');
+            }
+        ">Checkout</button>
+    </div>
+
+    <!-- Make sure live items sync up right out of storage on fresh boot page load -->
+    <script>
+        updateLiveCounters();
+    </script>
+
+</body>
+</html>
