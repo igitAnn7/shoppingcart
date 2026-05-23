@@ -24,5 +24,5 @@ JavaScript, HTML and CSS.
 - Building a practical real world application feature
 
 ## Author
-Your Name
-github.com/yourusername
+Anisha Chawla
+github.com/igitAnn7
